@@ -16634,40 +16634,18 @@ var slider = {
       }
     }
 
-    function successSlider() {
-      var $parent = $('.success-slider');
+    function designReviews() {
+      var $parent = $('.design-reviews');
 
       if ($parent.length) {
-        var currentSlide;
-        var slidesCount;
-        var sliderCounter = document.createElement('div');
-        sliderCounter.classList.add('slider__counter');
-
-        var updateSliderCounter = function updateSliderCounter(slick) {
-          currentSlide = slick.slickCurrentSlide() + 1;
-          slidesCount = slick.slideCount;
-          $(sliderCounter).text("".concat(currentSlide, " of ").concat(slidesCount));
-        };
-
-        $parent.on('init', function (event, slick) {
-          $('.success-slider-counter-wrap').append(sliderCounter);
-          updateSliderCounter(slick);
-        });
-        $parent.on('afterChange', function (event, slick) {
-          updateSliderCounter(slick, currentSlide);
-        });
         $parent.slick({
           dots: false,
-          arrows: false,
+          arrows: true,
           infinite: true,
           autoplay: false,
-          items: 1
-        });
-        $('.success-prev').click(function () {
-          $parent.slick('slickPrev');
-        });
-        $('.success-next').click(function () {
-          $parent.slick('slickNext');
+          slidesToShow: 2,
+          nextArrow: '<span class="arrow-right"></span>',
+          prevArrow: '<span class="arrow-left"></span>'
         });
       }
     }
@@ -16675,9 +16653,9 @@ var slider = {
     function init() {
       popularSlider();
       reviewsSlider();
-      successSlider();
       cardShowcaseSlider();
       similarProducts();
+      designReviews();
     }
 
     return {
