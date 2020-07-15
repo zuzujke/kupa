@@ -16349,6 +16349,8 @@ var _priceRange = _interopRequireDefault(require("./modules/price-range"));
 
 var _select = _interopRequireDefault(require("./modules/select"));
 
+var _modal = _interopRequireDefault(require("./modules/modal"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // You can write a call and import your functions in this file.
@@ -16367,7 +16369,9 @@ _priceRange.default.enable();
 
 _select.default.customStyle();
 
-},{"./modules/filterToggle":5,"./modules/hamburger":6,"./modules/price-range":7,"./modules/select":8,"./modules/slick":9}],5:[function(require,module,exports){
+_modal.default.open();
+
+},{"./modules/filterToggle":5,"./modules/hamburger":6,"./modules/modal":7,"./modules/price-range":8,"./modules/select":9,"./modules/slick":10}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16467,6 +16471,41 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var $ = require('jquery');
+
+var modal = {
+  open: function open() {
+    $('.modal').each(function (i) {
+      var target = $(this).attr('data-modal', "modal" + (i + 1));
+      console.log(target);
+    });
+    $('.open-modal').each(function (i) {
+      var modal_id = $(this).attr('rel', "modal" + (i + 1));
+      console.log(modal_id);
+      $(modal_id).on('click', function (e) {
+        e.preventDefault();
+        $("[data-modal='" + $(this).attr("rel") + "']").addClass('is-visible');
+        $('body').addClass('lock-scroll');
+      });
+    }); //Close Modal
+
+    $('.modal-close').on('click', function () {
+      $('.modal').removeClass('is-visible');
+      $('body').removeClass('lock-scroll');
+    });
+  }
+};
+var _default = modal;
+exports.default = _default;
+
+},{"jquery":2}],8:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
 var _ionRangeslider = _interopRequireDefault(require("ion-rangeslider"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -16488,7 +16527,7 @@ var range = {
 var _default = range;
 exports.default = _default;
 
-},{"ion-rangeslider":1,"jquery":2}],8:[function(require,module,exports){
+},{"ion-rangeslider":1,"jquery":2}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16545,7 +16584,7 @@ var select = {
 var _default = select;
 exports.default = _default;
 
-},{"jquery":2}],9:[function(require,module,exports){
+},{"jquery":2}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16618,6 +16657,26 @@ var slider = {
       }
     }
 
+    function designShowcaseSlider() {
+      if ($('.design-showcase-big').length && $('.design-showcase-small').length) {
+        $('.design-showcase-big').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          fade: true,
+          asNavFor: '.design-showcase-small'
+        });
+        $('.design-showcase-small').slick({
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          asNavFor: '.design-showcase-big',
+          dots: false,
+          arrows: false,
+          focusOnSelect: true
+        });
+      }
+    }
+
     function similarProducts() {
       var $parent = $('.similar-carousel');
 
@@ -16656,6 +16715,7 @@ var slider = {
       cardShowcaseSlider();
       similarProducts();
       designReviews();
+      designShowcaseSlider();
     }
 
     return {
