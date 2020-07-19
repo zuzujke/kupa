@@ -1,0 +1,14 @@
+.container,
+.container-fluid {
+  position: relative;
+  width: 100%;
+  height: inherit;
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 1199px;
+  @include media('<=tablet-lg') {
+    padding: 0;
+    max-width: 100%;
+  }
+}
+

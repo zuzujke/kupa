@@ -1,0 +1,72 @@
+// This is the most used helpers.
+//
+// You can remove or add your own helpers in this file.
+
+// // // // // //
+// Flex elements
+// // // // // //
+
+.flex,
+%flex {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flex-row,
+%flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-column,
+%flex-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.ai-flex-start,
+%ai-flex-start {
+  align-items: flex-start;
+}
+
+.ai-cetner,
+%ai-center {
+  align-items: center;
+}
+
+.ai-flex-end,
+%ai-flex-end {
+  align-items: flex-end;
+}
+
+.jc-flex-start,
+%jc-flex-start {
+  justify-content: flex-start;
+}
+
+.jc-center,
+%jc-center {
+  justify-content: center;
+}
+
+.jc-flex-end,
+%jc-flex-end {
+  justify-content: flex-end;
+}
+
+// // // //
+// Resets
+// // // //
+
+%indentreset {
+  margin: 0;
+  padding: 0;
+}
+
+%listreset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
