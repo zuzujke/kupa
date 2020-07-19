@@ -19142,8 +19142,7 @@ var hamburger = {
     var $btn = $('.hamburger');
     var $menu = $('.navigation');
     var $submenu = $('.submenu');
-    var $submenuLink = $('.menu__link--submenu');
-    var $submenuClose = $('.submenu__item--static');
+    var $hasSubmenu = $('.menu__wrap.has-submenu .menu__item');
     var OPENED_CLASS = 'opened';
     var OVERLAY_CLASS = 'overlay'; // alert('works');
 
@@ -19157,20 +19156,23 @@ var hamburger = {
     }
 
     function submenuToggle() {
-      $submenuLink.on('click', function (event) {
-        event.preventDefault();
-        $submenu.toggleClass(OPENED_CLASS);
-      });
-      $submenuClose.on('click', function (event) {
-        event.preventDefault();
-        $submenu.toggleClass(OPENED_CLASS);
-      });
+      $hasSubmenu.each(function (index) {
+        $(this).on("click", function (e) {
+          e.preventDefault();
+          console.log('element: ', $(this).attr('class'));
+          console.log('siblings: ', $(this).next().attr('class'));
+          $(this).toggleClass(OPENED_CLASS).next().toggleClass(OPENED_CLASS);
+        });
+      }); // $submenuClose.on('click', (event) => {
+      //   event.preventDefault();
+      //   $submenu.removeClass(OPENED_CLASS);
+      // });
     }
 
     function init() {
       if (!$btn.length) return;
-      hamburgerToggle();
-      if (!$submenu.length) return;
+      hamburgerToggle(); // if (!$hasSubmenu.length) return;
+
       submenuToggle();
     }
 
@@ -19386,6 +19388,33 @@ var $ = require('jquery');
 
 var slider = {
   sliderInit: function sliderInit() {
+    function hero() {
+      var $parent = $('.hero__slider');
+
+      if ($parent.length) {
+        $parent.slick({
+          dots: false,
+          arrows: true,
+          infinite: false,
+          autoplay: false,
+          slidesToShow: 1,
+          nextArrow: '<span class="arrow-right abs"></span>',
+          prevArrow: '<span class="arrow-left abs"></span>',
+          customPaging: function customPaging(slick, index) {
+            return '<span class="current">0' + (index + 1) + '</span>/' + '0' + slick.slideCount - 2;
+          },
+          responsive: [{
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 1,
+              dots: false,
+              arrows: false
+            }
+          }]
+        });
+      }
+    }
+
     function popularSlider() {
       var $parent = $('.popular-carousel');
       $parent.slick({
@@ -19394,16 +19423,19 @@ var slider = {
         slidesToShow: 3,
         autoplay: false,
         autoplaySpeed: 5000,
-        infinite: true,
+        infinite: false,
         customPaging: function customPaging(slick, index) {
-          return '<span class="current">0' + (index + 1) + '</span>/' + '0' + slick.slideCount;
+          return '<span class="current">0' + (index + 1) + '</span>/' + '0' + (slick.slideCount - 2);
         },
-        nextArrow: '<span class="arrow-right"></span>',
-        prevArrow: '<span class="arrow-left"></span>',
+        nextArrow: '<span class="arrow-right abs"></span>',
+        prevArrow: '<span class="arrow-left abs"></span>',
         responsive: [{
           breakpoint: 1024,
           settings: {
-            slidesToShow: 1
+            slidesToShow: 1,
+            customPaging: function customPaging(slick, index) {
+              return '<span class="current">0' + (index + 1) + '</span>/' + '0' + slick.slideCount;
+            }
           }
         }]
       });
@@ -19419,8 +19451,8 @@ var slider = {
           infinite: true,
           autoplay: false,
           slidesToShow: 4,
-          nextArrow: '<span class="arrow-right"></span>',
-          prevArrow: '<span class="arrow-left"></span>',
+          nextArrow: '<span class="arrow-right default"></span>',
+          prevArrow: '<span class="arrow-left default"></span>',
           responsive: [{
             breakpoint: 1024,
             settings: {
@@ -19495,8 +19527,8 @@ var slider = {
           infinite: true,
           autoplay: false,
           slidesToShow: 4,
-          nextArrow: '<span class="arrow-right"></span>',
-          prevArrow: '<span class="arrow-left"></span>',
+          nextArrow: '<span class="arrow-right default"></span>',
+          prevArrow: '<span class="arrow-left default"></span>',
           responsive: [{
             breakpoint: 1024,
             settings: {
@@ -19517,12 +19549,31 @@ var slider = {
           infinite: true,
           autoplay: false,
           slidesToShow: 2,
-          nextArrow: '<span class="arrow-right"></span>',
-          prevArrow: '<span class="arrow-left"></span>',
+          nextArrow: '<span class="arrow-right default"></span>',
+          prevArrow: '<span class="arrow-left default"></span>',
           responsive: [{
             breakpoint: 1024,
             settings: {
               dots: true,
+              slidesToShow: 1,
+              fade: false,
+              arrows: false
+            }
+          }]
+        });
+      }
+    }
+
+    function projects() {
+      var $parent = $('.grid3.projects-list');
+
+      if ($parent.length && window.matchMedia("(max-width: 1024px)").matches) {
+        $parent.slick({
+          responsive: [{
+            breakpoint: 1024,
+            settings: {
+              dots: true,
+              arrows: false,
               slidesToShow: 1,
               fade: false
             }
@@ -19532,12 +19583,14 @@ var slider = {
     }
 
     function init() {
+      hero();
       popularSlider();
       reviewsSlider();
       cardShowcaseSlider();
       similarProducts();
       designReviews();
       designShowcaseSlider();
+      projects();
     }
 
     return {
