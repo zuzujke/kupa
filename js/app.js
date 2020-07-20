@@ -19304,14 +19304,27 @@ var $ = require('jquery');
 
 var range = {
   enable: function enable() {
+    var $from = $(".js-from");
+    var $to = $(".js-to");
+    var from = null;
+    var to = null;
     $(".js-range-slider").ionRangeSlider({
       type: "double",
       min: 0,
       max: 10000,
-      from: 200,
-      to: 5000,
-      prefix: "$"
+      from: $from.val(),
+      to: $to.val(),
+      onChange: function onChange(data) {
+        from = data.from;
+        to = data.to;
+        updateValues();
+      }
     });
+
+    var updateValues = function updateValues() {
+      $from.prop("value", from);
+      $to.prop("value", to);
+    };
   }
 };
 var _default = range;
