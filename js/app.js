@@ -19417,7 +19417,7 @@ var slider = {
             return '<span class="current">0' + (index + 1) + '</span>/' + '0' + slick.slideCount - 2;
           },
           responsive: [{
-            breakpoint: 1024,
+            breakpoint: 1025,
             settings: {
               slidesToShow: 1,
               dots: false,
@@ -19443,7 +19443,7 @@ var slider = {
         nextArrow: '<span class="arrow-right abs"></span>',
         prevArrow: '<span class="arrow-left abs"></span>',
         responsive: [{
-          breakpoint: 1024,
+          breakpoint: 1025,
           settings: {
             slidesToShow: 1,
             customPaging: function customPaging(slick, index) {
@@ -19467,7 +19467,7 @@ var slider = {
           nextArrow: '<span class="arrow-right default"></span>',
           prevArrow: '<span class="arrow-left default"></span>',
           responsive: [{
-            breakpoint: 1024,
+            breakpoint: 1025,
             settings: {
               slidesToShow: 1
             }
@@ -19485,7 +19485,7 @@ var slider = {
           fade: true,
           asNavFor: '.card-showcase-small',
           responsive: [{
-            breakpoint: 1024,
+            breakpoint: 1025,
             settings: {
               dots: true,
               fade: false
@@ -19512,7 +19512,7 @@ var slider = {
           fade: true,
           asNavFor: '.design-showcase-small',
           responsive: [{
-            breakpoint: 1024,
+            breakpoint: 1025,
             settings: {
               dots: true,
               fade: false
@@ -19543,7 +19543,7 @@ var slider = {
           nextArrow: '<span class="arrow-right default"></span>',
           prevArrow: '<span class="arrow-left default"></span>',
           responsive: [{
-            breakpoint: 1024,
+            breakpoint: 1025,
             settings: {
               slidesToShow: 1
             }
@@ -19565,7 +19565,7 @@ var slider = {
           nextArrow: '<span class="arrow-right default"></span>',
           prevArrow: '<span class="arrow-left default"></span>',
           responsive: [{
-            breakpoint: 1024,
+            breakpoint: 1025,
             settings: {
               dots: true,
               slidesToShow: 1,
@@ -19580,10 +19580,10 @@ var slider = {
     function projects() {
       var $parent = $('.grid3.projects-list');
 
-      if ($parent.length && window.matchMedia("(max-width: 1024px)").matches) {
+      if ($parent.length && window.matchMedia("(max-width: 1025px)").matches) {
         $parent.slick({
           responsive: [{
-            breakpoint: 1024,
+            breakpoint: 1025,
             settings: {
               dots: true,
               arrows: false,
