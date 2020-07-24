@@ -19595,6 +19595,28 @@ var slider = {
       }
     }
 
+    function relatedProducts() {
+      var $parent = $('.related-items');
+
+      if ($parent.length) {
+        $parent.slick({
+          dots: false,
+          arrows: true,
+          infinite: true,
+          autoplay: false,
+          slidesToShow: 4,
+          nextArrow: '<span class="arrow-right default"></span>',
+          prevArrow: '<span class="arrow-left default"></span>',
+          responsive: [{
+            breakpoint: 1025,
+            settings: {
+              slidesToShow: 1
+            }
+          }]
+        });
+      }
+    }
+
     function init() {
       hero();
       popularSlider();
@@ -19604,6 +19626,7 @@ var slider = {
       designReviews();
       designShowcaseSlider();
       projects();
+      relatedProducts();
     }
 
     return {
